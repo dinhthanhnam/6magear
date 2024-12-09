@@ -9,10 +9,12 @@
   <title><?= isset($title) ? $title : "6maGear"; ?></title>
   <link rel="icon" type="image/png" href="<?= asset('img/logo.png') ?>">
   <link rel="stylesheet" href="<?= asset('css/style.css') ?>" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/b041ca492a.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -34,8 +36,24 @@
             <span class="hotline-number">0825 233 233</span>
           </div>
           <div class="cart">
-            
-            <a href="cart.html"><i class="fa fa-shopping-cart"></i> <span>Giỏ hàng</span></a>
+            <a href="/cart"><i class="fa fa-shopping-cart"></i> <span>Giỏ hàng</span></a>
+          </div>
+          <div class="login">
+            <?php 
+              if(isset($_SESSION['authenticated'])) {
+                $name = $_SESSION['auth_user']['name'];
+                echo '<a href="/userdashboard"><span>'.$name.'</span></a>';
+              } else {
+                echo '<a href="/login"> <span>Đăng nhập</span></a>';
+              }
+            ?>
+          <div class="logout" style="font-size: 12px;">
+            <?php 
+              if(isset($_SESSION['authenticated'])) {
+                echo '<a href="/logout"> <span>Đăng xuất</span></a>';
+              }
+            ?>
+          </div>
           </div>
         </div>
       </div>

@@ -86,7 +86,7 @@ require_once __DIR__ . '../../../core/helpers.php';
         ?>
         </ul>
       </div>
-      <img class="img-ads" src="<?= asset('img/product/ads.jpg') ?>" alt="" />
+      <img class="img-ads" src="<?= asset('img/products/ads.jpg') ?>" alt="Quảng cáo" />
     </div>
     <!-- Hot Product -->
     <div class="nav-line-1">

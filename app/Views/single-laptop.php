@@ -4,6 +4,8 @@ include __DIR__ . '/partials/header.php'; // Include header
 require_once __DIR__ . '../../../core/helpers.php';
 ?>
 
+
+
 <div style="padding-top: 80px;" class="frame">
   <!-- Acer Product -->
   <div class="nav-line-2">
@@ -12,18 +14,25 @@ require_once __DIR__ . '../../../core/helpers.php';
   <div class="product-container">
     <!-- Đoạn mã HTML cho ảnh chính và các ảnh nhỏ -->
     <div class="product-images">
-      <img class="main-image" src="<?= asset('img/products/'.$laptop->id.'/image1.jpg') ?>">
+      <a data-fancybox="gallery" href="<?= asset('img/products/' . $laptop->id . '/image1.jpg') ?>">
+        <img class="main-image" src="<?= asset('img/products/' . $laptop->id . '/image1.jpg') ?>" alt="Main Image">
+      </a>
       <div class="thumbnail-images">
-        <img class="thumbnail" src="<?= asset('img/products/'.$laptop->id.'/image1.jpg') ?>" alt="Thumbnail 1">
-        <img class="thumbnail" src="<?= asset('img/products/'.$laptop->id.'/image2.jpg') ?>" alt="Thumbnail 2">
-        <img class="thumbnail" src="<?= asset('img/products/'.$laptop->id.'/image3.jpg') ?>" alt="Thumbnail 3">
-        <img class="thumbnail" src="<?= asset('img/products/'.$laptop->id.'/image4.jpg') ?>" alt="Thumbnail 4">
+        <a data-fancybox="gallery" href="<?= asset('img/products/' . $laptop->id . '/image1.jpg') ?>">
+          <img class="thumbnail" src="<?= asset('img/products/' . $laptop->id . '/image1.jpg') ?>" alt="Thumbnail 1">
+        </a>
+        <a data-fancybox="gallery" href="<?= asset('img/products/' . $laptop->id . '/image2.jpg') ?>">
+          <img class="thumbnail" src="<?= asset('img/products/' . $laptop->id . '/image2.jpg') ?>" alt="Thumbnail 2">
+        </a>
+        <a data-fancybox="gallery" href="<?= asset('img/products/' . $laptop->id . '/image3.jpg') ?>">
+          <img class="thumbnail" src="<?= asset('img/products/' . $laptop->id . '/image3.jpg') ?>" alt="Thumbnail 3">
+        </a>
+        <a data-fancybox="gallery" href="<?= asset('img/products/' . $laptop->id . '/image4.jpg') ?>">
+          <img class="thumbnail" src="<?= asset('img/products/' . $laptop->id . '/image4.jpg') ?>" alt="Thumbnail 4">
+        </a>
       </div>
     </div>
-    <div class="fullscreen-image-container">
-      <span class="close-btn">&times;</span>
-      <img class="fullscreen-image" src="" alt="Fullscreen Image">
-    </div>
+
     <div class="product-details">
       <div class="breadcrumbs">
         <a href="/">Trang chủ</a> / <a href="/Acer">Laptop <?= $laptop->brand ?></a>
@@ -141,6 +150,21 @@ require_once __DIR__ . '../../../core/helpers.php';
   </div>
 </div>
 
-<?php 
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Fancybox tự động kích hoạt thông qua `data-fancybox` 
+    Fancybox.bind("[data-fancybox='gallery']", {
+      Toolbar: {
+        display: ["zoom", "close"], // Hiển thị nút phóng to và đóng
+      },
+      Thumbs: {
+        autoStart: true, // Tự động hiển thị hình thu nhỏ
+      },
+    });
+  });
+</script>
+
+<?php
 include __DIR__ . '/partials/footer.php';
 ?>
