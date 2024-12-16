@@ -7,7 +7,7 @@ require_once __DIR__ . '../../../core/helpers.php';
   <div class="user-dashboard">
     <h5>User Dashboard</h5>
   </div>
-  <div>
+  <div class="user-info">
     <h4>Thông tin tài khoản</h4>
     <hr>
     <h5>Username: <?= $_SESSION['auth_user']['name'] ?> </h5>

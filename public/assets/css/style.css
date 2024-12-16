@@ -1573,13 +1573,15 @@ footer {
 }
 
 .alert.alert-danger {
-  color: red;
-  font-size: 11px;
+  color: red !important;
+  font-size: 13px !important;
+  padding-left: 20px;
 }
 
 .alert.alert-success {
-  color: green;
-  font-size: 11px;
+  color: green !important;
+  font-size: 13px !important;
+  padding-left: 20px;
 }
 
 /* Header */
@@ -1591,15 +1593,16 @@ footer {
   color: #fff;
 }
 
-.user-dashboards h5 {
-  margin: 0;
+.user-info h5 {
   font-size: 18px;
-  font-weight: 600;
-  padding-left: 15px;
+  margin: 5px 0;
+  color: #555;
+  margin: 20px 10px;
+  padding-left: 20px;
 }
 
 /* Thông tin tài khoản */
-h4 {
+.user-info h4 {
   font-size: 20px;
   margin-bottom: 10px;
   color: #333;
@@ -1607,15 +1610,44 @@ h4 {
   padding-top: 10px;
 }
 
-hr {
+.user-info hr {
   border: 1px solid #ddd;
   margin: 10px 0;
 }
 
-h5 {
-  font-size: 16px;
-  margin: 5px 0;
-  color: #555;
-  margin: 20px 10px;
-  padding-left: 20px;
+.search-container {
+  position: relative; /* Đặt vị trí tương đối để danh sách kết quả nằm dưới thanh tìm kiếm */
+  display: inline-block; /* Đảm bảo kích thước bao quanh đúng ô tìm kiếm */
 }
+
+.search-results {
+  position: absolute;
+  top: 100%; /* Đặt ngay bên dưới thanh tìm kiếm */
+  left: 0; /* Căn chỉnh bên trái với thanh tìm kiếm */
+  width: 100%; /* Đảm bảo danh sách ngang với thanh tìm kiếm */
+  max-width: 300px; /* Giới hạn chiều rộng */
+  max-height: 300px; /* Giới hạn chiều cao */
+  overflow-y: auto; /* Cuộn dọc nếu kết quả quá dài */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 1000; /* Nổi trên các phần tử khác */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+}
+
+.search-results p {
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.search-results p:hover {
+  background-color: #f9f9f9;
+}
+
+
+
+

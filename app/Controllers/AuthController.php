@@ -1,6 +1,13 @@
 <?php
 require_once __DIR__ . '/../Models/User.php';
 require_once __DIR__ . '/../../core/DB.php';
+require __DIR__ . '/../../lib/PHPMailer/Exception.php';
+require __DIR__ . '/../../lib/PHPMailer/PHPMailer.php';
+require __DIR__ . '/../../lib/PHPMailer/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 class AuthController
 {
@@ -34,9 +41,10 @@ class AuthController
                         // Kiểm tra mật khẩu
                         if (password_verify($password, $user->password)) {
                             // Kiểm tra trạng thái xác minh tài khoản
-                            if ($user->verify_status == 0) {
+                            if ($user->verify_status == 1) {
                                 $_SESSION['authenticated'] = true;
                                 $_SESSION['auth_user'] = [
+                                    'id' => $user->id,
                                     'name' => $user->name,
                                     'phone' => $user->phone,
                                     'email' => $user->email,
@@ -128,6 +136,7 @@ class AuthController
                     ]);
 
                     if ($query_success) {
+                        $this->sendemail_verify($name, $email, $verify_token);
                         // Có thể thêm logic gửi email xác nhận ở đây
                         $_SESSION['status'] = "Đăng ký thành công! Bạn có thể đăng nhập!";
                         header("Location: login");
@@ -147,6 +156,57 @@ class AuthController
         }
     }
 
+    public function sendemail_verify($name, $email, $verify_token)
+    {
+        //Mailtrap là miễn phí, đăng ký và dùng thôi
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = 'smtp.mailtrap.io';    // Máy chủ SMTP của Gmail
+        $mail->SMTPAuth = true;
+        $mail->Username = 'nhập user name vào đây';
+        $mail->Password = 'nhập mật khẩu vào đây';       // App Password đã tạo
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 2525;          
+
+        $mail->setFrom('6magear@gmail.com', '6magear');   // Địa chỉ gửi đi
+        $mail->addAddress($email);
+        $mail->isHTML(true);
+        $mail->Subject = 'Email Verification';
+        $email_template = "
+          <div style='font-family: Arial, sans-serif; color: #333; line-height: 1.6;'>
+              <table width='100%' cellpadding='0' cellspacing='0' style='max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;'>
+                  <tr>
+                      <td style='background-color: #4CAF50; padding: 20px; text-align: center;'>
+                          <h1 style='color: #ffffff; margin: 0;'>Chào mừng bạn đến với 6maGear!</h1>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td style='padding: 20px;'>
+                          <h2 style='color: #4CAF50;'>Xin chào $name,</h2>
+                          <p>Bạn đã thực hiện đăng ký tài khoản trên trang của chúng tôi.</p>
+                          <p>Nếu đây là hành động của bạn, vui lòng bấm vào nút bên dưới để xác nhận email và hoàn thành quá trình đăng ký:</p>
+                          <div style='text-align: center; margin: 20px 0;'>
+                              <a href='http://localhost:8000/verify_email.php?token=$verify_token' style='display: inline-block; padding: 12px 20px; color: #ffffff; background-color: #4CAF50; text-decoration: none; border-radius: 5px; font-weight: bold;'>Xác nhận Email</a>
+                          </div>
+                          <p style='font-size: 14px; color: #555;'>Nếu bạn không thực hiện đăng ký này, vui lòng bỏ qua email này. Liên hệ với chúng tôi nếu bạn cần hỗ trợ.</p>
+                          <p>Trân trọng,<br>Đội ngũ Hỗ trợ</p>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td style='background-color: #f0f0f0; padding: 15px; text-align: center; font-size: 12px; color: #888;'>
+                          <p>&copy; 2024 Lập trình PHP</p>
+                      </td>
+                  </tr>
+              </table>
+          </div>
+      ";
+
+        $mail->Body = $email_template;
+
+        if (!$mail->send()) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+        };
+    }
     public function logout()
     {
         session_unset();
@@ -154,5 +214,4 @@ class AuthController
         header("Location: /");
         exit;
     }
-
 }

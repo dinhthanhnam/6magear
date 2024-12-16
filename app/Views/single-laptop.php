@@ -35,7 +35,7 @@ require_once __DIR__ . '../../../core/helpers.php';
 
     <div class="product-details">
       <div class="breadcrumbs">
-        <a href="/">Trang chủ</a> / <a href="/Acer">Laptop <?= $laptop->brand ?></a>
+        <a href="/">Trang chủ</a> / <a href="/<?= $laptop->brand ?>">Laptop <?= $laptop->brand ?></a>
       </div>
       <h1 class="product-title"><?= $laptop->name ?></h1>
       <p class="product-price">Giá: <?= $laptop->price ?></p>

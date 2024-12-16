@@ -25,8 +25,9 @@
           <a href="/" class="logo">
             <img src="<?= asset('img/logo1.png') ?>" alt="Logo">
           </a>
-          <div class="search-bar">
-            <input type="ftext" placeholder="Bạn muốn tìm sản phẩm gì?">
+          <div class="search-bar search-container">
+            <input type="ftext" id="search" name="search" placeholder="Bạn muốn tìm sản phẩm gì?">
+            <div id="search-results" class="search-results"></div>
             <button><i class="fa fa-search"></i></button>
           </div>
         </div>
@@ -75,7 +76,7 @@
 </header>
 <nav>
     <input class="checkbox" type="checkbox" />
-    <img src="img/navigation/menu.png" alt="" />
+    <img src="<?= asset('img/navigation/menu.png') ?>" alt="" />
     <div class="logo">
         <a href="index.html">
             <h3>6MA Gear</h3>

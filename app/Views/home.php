@@ -49,9 +49,9 @@ require_once __DIR__ . '../../../core/helpers.php';
       </div>
     </div>
 
-    <h2 style="color: white; background-color: red; padding: 5px 5px 5px 5px; align-items: center; text-align:center;">GIỜ VÀNG GIÁ SỐC</h2>
+    <!-- <h2 style="color: white; background-color: red; padding: 5px 5px 5px 5px; align-items: center; text-align:center;">GIỜ VÀNG GIÁ SỐC</h2> -->
 
-    <div class="scroll-container">
+    <!-- <div class="scroll-container">
       <img src="img/banner/sale-1.png" alt="Cinque Terre" style="margin-right: 20px;" width="200px">
       <img src="img/banner/sale-2.png" alt="Forest" style="margin-right: 20px;" width="200px">
       <img src="img/banner/sale-3.png" alt="Northern Lights" style="margin-right: 20px;" width="200px">
@@ -67,7 +67,7 @@ require_once __DIR__ . '../../../core/helpers.php';
       <img src="img/banner/sale-3.png" alt="Northern Lights" style="margin-right: 20px;" width="200px">
       <img src="img/banner/sale-4.png" alt="Mountains" style="margin-right: 20px;" width="200px">
       <img src="img/banner/sale-5.png" alt="Mountains" style="margin-right: 20px;" width="200px">
-    </div>
+    </div> -->
     <!-- New Product -->
     <div class="ads">
       <div>
